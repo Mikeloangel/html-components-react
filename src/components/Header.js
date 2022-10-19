@@ -8,7 +8,7 @@ function Header() {
   function handleMenuClose(){setIsMenuOpen(false)}
 
   return (
-    <header className='section header'>
+    <header className='top-block header'>
       <div className='header__logo'></div>
 
       <nav className={`header__nav ${isMenuOpen && 'header__nav_open'}`}>
