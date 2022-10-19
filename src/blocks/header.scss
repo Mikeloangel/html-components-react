@@ -1,0 +1,178 @@
+.header {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    background-image: url(../images/logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    min-width: 42px;
+    min-height: 42px;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: $base-padding-s;
+  }
+
+  &__nav-list {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: $base-padding-m;
+  }
+
+  &__nav-item {
+    color: $color-text-main;
+  }
+
+  &__nav-link {
+    color: $color-link-main;
+    text-decoration: underline;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &_active {
+      opacity: 0.5;
+      &:hover {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  &__menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: $color-background-light;
+
+
+    visibility: hidden;
+    opacity: 0;
+
+    transition: $transition-default;
+
+    &_open {
+      visibility: visible;
+      opacity: .7;
+    }
+  }
+
+  &__menu-burger {
+    position: relative;
+
+    width: $base-width-m;
+    height: $base-width-m;
+
+    cursor: pointer;
+
+    display: none;
+
+    &_active {
+      & .header__menu-burger-stripe {
+        transform: rotate(45deg) translate(8px, 9px);
+      }
+
+      & .header__menu-burger-stripe::after {
+        transform: rotate(90deg) translate(-14px, 0px);
+      }
+
+      & .header__menu-burger-stripe::before {
+        transform: rotate(45deg) translate(-18px, -19px) scale(0);
+      }
+    }
+  }
+
+  &__menu-burger-stripe,
+  &__menu-burger-stripe::after,
+  &__menu-burger-stripe::before {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+
+    background-color: $color-text-main;
+
+    transition: $transition-default
+  }
+
+  &__menu-burger-stripe {
+    top: 4px;
+    left: 0;
+  }
+
+  &__menu-burger-stripe::after {
+    content: "";
+    top: 14px;
+    left: 0;
+  }
+
+  &__menu-burger-stripe::before {
+    content: "";
+    top: 27px;
+    left: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    &__menu-backdrop {
+      z-index: $z-index-menu;
+    }
+
+    &__menu-burger {
+      display: block;
+
+      z-index: $z-index-menu + 6;
+    }
+
+    &__nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+
+      background-color: #111;
+      width: 40vw;
+      height: 100vh;
+
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      margin-right: -800px;
+
+      transition: $transition-default;
+
+      &_open {
+        margin-right: 0;
+
+        z-index: $z-index-menu + 5;
+      }
+    }
+
+    &__nav-list {
+      flex-direction: column;
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .header {
+    &__nav {
+      width: 100vw;
+    }
+  }
+}

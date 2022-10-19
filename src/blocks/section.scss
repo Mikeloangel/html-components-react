@@ -1,6 +1,6 @@
 .section{
   width: min(1440px, 90%);
-  padding: 20px 40px;
+  padding: $base-padding-s $base-padding-m;
   margin: 0 auto;
   box-sizing: border-box;
 }
