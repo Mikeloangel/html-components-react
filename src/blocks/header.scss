@@ -1,9 +1,7 @@
 .header {
   position: relative;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flexDisplay(space-between, center, row);
 
   &__logo {
     background-image: url(../images/logo.png);
@@ -15,19 +13,15 @@
   }
 
   &__nav {
-    display: flex;
-    flex-direction: column;
+    @include flexDisplay(flex-start, flex-start, column);
     gap: $base-padding-s;
   }
 
   &__nav-list {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    list-style: none;
+    @include resetPaddings;
+    @include flexDisplay(flex-end, flex-start, row);
 
-    display: flex;
-    justify-content: flex-end;
+    list-style: none;
     gap: $base-padding-m;
   }
 
@@ -53,13 +47,9 @@
 
   &__menu-backdrop {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    @include fullScreen;
 
     background-color: $color-background-light;
-
 
     visibility: hidden;
     opacity: 0;
@@ -148,9 +138,7 @@
       width: 40vw;
       height: 100vh;
 
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      @include flexDisplay(center, center, column);
 
       margin-right: -800px;
 
@@ -172,7 +160,7 @@
 @media screen and (max-width: 425px) {
   .header {
     &__nav {
-      width: 100vw;
+      @include fullScreen;
     }
   }
 }
